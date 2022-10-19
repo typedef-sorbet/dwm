@@ -43,9 +43,11 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class                        instance    title       tags mask     isfloating   monitor */
+	{ "Gimp",                       NULL,       NULL,       0,            1,           -1 },
+    { "QtCreator",                  NULL,       NULL,       1,            0,           -1 },
+    { "Microsoft Teams - Preview",  NULL,       NULL,       1 << 1,       0,            1 },
+    { "gemini",                     NULL,       NULL,       0,            1,           -1 }
 };
 
 /* layout(s) */
@@ -82,8 +84,10 @@ static const char *termcmd[]  = { "kitty", NULL };
 static const char *roficmd[]  = { "rofi", "-no-lazy-grab", "-show", "drun", "-theme", "centered.rasi", NULL };
 static const char *killcmd[]  = { "pkill", "dwm", NULL };
 static const char *ffxcmd[]  = { "firefox", NULL };
+static const char *teamscmd[] = { "teams", "--no-sandbox", NULL};
 static const char *qtcmd[]  = { "/home/sanctity/QtCommercial/Tools/QtCreator/bin/qtcreator", "dwm", NULL };
 static const char *qtopencmd[]  = { "/home/sanctity/Qt/Tools/QtCreator/bin/qtcreator", "dwm", NULL };
+static const char *flameshotcmd[] = { "flameshot", "gui", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -127,10 +131,12 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-    { MODKEY|ShiftMask,             XK_x,      spawn,          {.v = killcmd } },
+    { MODKEY|ShiftMask,             XK_k,      spawn,          {.v = killcmd } },
     { MODKEY,                       XK_f,      spawn,          {.v = ffxcmd } },
     { MODKEY,                       XK_c,      spawn,          {.v = qtcmd } },
     { MODKEY,                       XK_q,      spawn,          {.v = qtopencmd } },
+    { MODKEY,                       XK_t,      spawn,          {.v = teamscmd } },
+    { MODKEY|ShiftMask,             XK_s,      spawn,          {.v = flameshotcmd}},
 };
 
 /* button definitions */
